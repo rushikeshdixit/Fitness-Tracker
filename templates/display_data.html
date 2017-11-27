@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display</title>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/static/assets/css/form-elements.css">
+        <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+
+<br>
+{{msg}}
+<form method="post" action="/foodItem">
+
+            <h2>What did you eat? </h2>
+
+<select class="selectpicker show-tick" id="question_type" title="Select One" name="foodValue">
+<option name="a">Burger</option>
+<option name="b">Beer</option>
+    <option name="c">Pizza</option>
+    <option name="d">Coffee</option>
+    <option name="f">Apple</option>
+    <option name="g">Potatoes</option>
+    <option name="h">Pastry</option>
+    <option name="i">Pasta</option>
+    <option name="j">Mango</option>
+    <option name="k">Chips</option>
+    <option name="l">Salad</option>
+
+</select>
+            <!--<input type="text" name="foodValue" value="mango"> -->
+            <input type="submit" value="Click me">
+
+</form>
+
+    <script src="/static/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/static/js/rangeslider.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/exercises.js"></script>
+
+</body>
+</html>

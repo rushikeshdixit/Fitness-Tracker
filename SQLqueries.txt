@@ -1,0 +1,2 @@
+CREATE TABLE usercred(username VARCHAR(20), password VARCHAR(200));
+CREATE TABLE imagecomments(username VARCHAR(20), commentid INT, comment VARCHAR(200), imagename VARCHAR(200));
