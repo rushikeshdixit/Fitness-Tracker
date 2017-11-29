@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Biographic Form</title>
+    <title>Fitness Tracker</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/assets/font-awesome/css/font-awesome.min.css">
@@ -17,14 +17,14 @@
       <a class="navbar-brand" href="#">Fitness Tracker</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="mainPage">Home</a></li>
-      <li id="userInput"><a href="#">Diabetes Prediction</a></li>
+      <li><a href="mainPage">Home</a></li>
+      <li class="active" id="userInput"><a href="#">Diabetes Prediction</a></li>
     </ul>
   </div>
 </nav>
 
 <h2>Please fill up the following information!!</h2>
-<form method="post" action="/getdata">
+<form id="userInput" method="post" action= "/getdata">
     <table>
         <tr>
             <td>How many pregancies have you had: </td>
@@ -54,16 +54,27 @@
             <td>
 
             </td>
-            <td><button type="submit">Submit Form</button></td>
+            <td><button type="submit" id="clickMe">Submit Form</button></td>
         </tr>
     </table>
 </form>
 
     <script src="/static/assets/js/jquery-1.11.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="/static/js/rangeslider.js"></script>
-    <script src="/static/js/main.js"></script>
+   <!-- <script src="/static/js/main.js"></script> -->
     <script src="/static/js/exercises.js"></script>
+        <script
+      src="https://code.jquery.com/jquery-1.10.2.js"
+      integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
+      crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"
+      integrity="sha256-tp8VZ4Y9dg702r7D6ynzSavKSwB9zjariSZ4Snurvmw="
+      crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"
+      integrity="sha256-oTyWrNiP6Qftu4vs2g0RPCKr3g1a6QTlITNgoebxRc4="
+      crossorigin="anonymous"></script>
 
 </body>
 </html>

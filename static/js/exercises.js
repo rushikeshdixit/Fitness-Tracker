@@ -2,5 +2,10 @@
  * Created by Rushi on 11/21/17.
  */
 $(document).ready(function () {
-$("#question_type option:selected").attr('name');
+
+    $(window).bind("pageshow",function(){
+        $('#userInput')[0].reset();
+    });
+
+
 });

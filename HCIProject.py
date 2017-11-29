@@ -9,6 +9,15 @@ import xlrd
 import sklearn
 import openpyxl
 from openpyxl import load_workbook
+import os
+from openpyxl import load_workbook
+from sklearn import linear_model
+import matplotlib.pyplot as plt
+import numpy as np
+import xlwt
+from scipy import sparse
+# from xlutils.copy import copy
+
 
 app = Flask(__name__)
 
@@ -22,6 +31,7 @@ app.config['MYSQL_HOST'] = 'localhost'
 mysql = MySQL(app)
 print "success"
 age=""
+age1 = {"AGE":"1"}
 
 def get_user_credentials(username):
     conn = mysql.connection
@@ -84,20 +94,48 @@ def mainPage():
             print "age is", obj3
             ratio=float(obj1)/float(obj2)
             print ratio
+            age1["AGE"]=obj3
             # jsonify(''ratio)
             # dict={'waist':obj1, 'height':obj2, 'age':obj3, 'ratio':ratio}
            # floatRatio=float(ratio)
             #print floatRatio
             return jsonify(ratio)
 
-@app.route('/appleExercises', methods=['GET', 'POST'])
-def appleExercises():
+@app.route('/appleExercises1', methods=['GET', 'POST'])
+def appleExercises1():
         if request.method == 'GET':
-            return render_template('appleExercises.html')
+            return render_template('appleExercises1.html')
         if request.method == 'POST':
             age=request.json['age']
             print age
-            return render_template('appleExercises.html')
+            return render_template('appleExercises1.html')
+            
+@app.route('/appleExercises2', methods=['GET', 'POST'])
+def appleExercises2():
+        if request.method == 'GET':
+            return render_template('appleExercises2.html')
+        if request.method == 'POST':
+            age=request.json['age']
+            print age
+            return render_template('appleExercises2.html')
+
+@app.route('/weight_birdDog', methods=['GET', 'POST'])
+def weight_birdDog():
+        if request.method == 'GET':
+            return render_template('weight_birdDog.html')
+        if request.method == 'POST':
+            age=request.json['age']
+            print age
+            return render_template('weight_birdDog.html')
+
+@app.route('/rear_lounge', methods=['GET', 'POST'])
+def rear_lounge():
+        if request.method == 'GET':
+            return render_template('rear_lounge.html')
+        if request.method == 'POST':
+            age=request.json['age']
+            print age
+            return render_template('rear_lounge.html')
 
 @app.route('/pearExercises', methods=['GET', 'POST'])
 def pearExercises():
@@ -107,6 +145,33 @@ def pearExercises():
         age = request.json['age']
         print age
         return render_template('pearExercises.html')
+        
+@app.route('/pearExercises2', methods=['GET', 'POST'])
+def pearExercises2():
+    if request.method == 'GET':
+        return render_template('pearExercises2.html')
+    if request.method == 'POST':
+        age = request.json['age']
+        print age
+        return render_template('pearExercises2.html')
+        
+@app.route('/pear_plankleg', methods=['GET', 'POST'])
+def pear_plankleg():
+        if request.method == 'GET':
+            return render_template('pear_plankleg.html')
+        if request.method == 'POST':
+            age=request.json['age']
+            print age
+            return render_template('pear_plankleg.html')
+
+@app.route('/pear_vpull', methods=['GET', 'POST'])
+def pear_vpull():
+        if request.method == 'GET':
+            return render_template('pear_vpull.html')
+        if request.method == 'POST':
+            age=request.json['age']
+            print age
+            return render_template('pear_vpull.html')
 
 @app.route('/user_input', methods=['GET', 'POST'])
 def user_input():
@@ -127,8 +192,7 @@ def user_input():
 @app.route('/getdata', methods=['GET', 'POST'])
 def check():
     print("I came here")
-
-    preg = request.form.get('preganency')
+    preg = request.form.get('pregnancy')
     bloodP =request.form.get('BloodPressure')
     skinT = request.form.get('skinthickness')
     insulin = request.form.get('insulin')
@@ -140,6 +204,7 @@ def check():
 
     appendDataToExcel(preg,bloodP,skinT, insulin, bmi, age)
     print("=========Text Excel Saved=======")
+    print('Data in excel is : ')
 
     var = precitMe()
     print("var is",var)
@@ -158,15 +223,17 @@ def check():
 
 def appendDataToExcel(preg,bloodP,skinT, insulin, bmi, age):
     print("Entered Append Function")
-
     file = '/Users/Rushi/PycharmProjects/HCIProject/static/diabetes_data.xlsx'
     new_row = [preg,bloodP,skinT, insulin,bmi, age]
+    print new_row
     wb = openpyxl.load_workbook(filename=file)
     ws = wb.get_sheet_by_name('diabetes')
     row = ws.max_row +1
     for col, entry in enumerate(new_row, start=1):
+        print('col is', col, 'entry is', entry)
         ws.cell(row=row, column=col, value=entry)
     wb.save(file)
+    wb.close()
     print("Leaving Append Function")
 
 
@@ -179,11 +246,51 @@ def precitMe():
     ws = wb.worksheets[0]
     row = ws.max_row
     ws.cell(row=row, column=7).value = var
+    wb.close()
     print("====================================================")
     print(var)
 
     return var
 
+def predictDiabetes():
+    print("lol i came here")
+    # database = xlrd.open_workbook('/Users/Rushi/Downloads/Diabetes-Prediction-for-Women-master/diabetes_data.xlsx')
+    # wb = load_workbook(filename='/Users/Rushi/Downloads/Diabetes-Prediction-for-Women-master/diabetes_data.xlsx')
+    # ws= wb.worksheets[0]
+    # print 'Database is :', ws
+    col_names = ['Pregnancies', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'Age',
+                 'Glucose']
+    print(col_names)
+    pima = pd.read_excel("/Users/Rushi/PycharmProjects/HCIProject/static/diabetes_data.xlsx", names=col_names, engine='xlrd')
+    print 'pima is', pima
+    per = 0.55
+    plot = pd.DataFrame(col_names)
+    print 'plot is :', plot
+    train = pima[:((int)(len(plot) * per))]
+    xtrain = train[
+        ['Pregnancies', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'Age']]
+    ytrain = train[['Glucose']]
+
+    test = pima[((int)(len(plot) * per)):]
+    print 'Test is', test
+    xtest = test[['Pregnancies', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'Age']]
+    print('last value ofXtest is ', xtest)
+    ytest = test[['Glucose']]
+    dataframeHeading = plot.head()
+
+    ols = sklearn.linear_model.LinearRegression()
+    model = ols.fit(xtrain, ytrain)
+
+    predict = model.predict(xtest)
+    print("==Value of model predict===")
+
+    length = len(predict) -1
+    print(predict[length])
+    print("This is the value?")
+    print("Ends Here")
+    pima.update(pima)
+
+    return predict[length]
 
 
 @app.route('/foodItem', methods=['GET', 'POST'])
@@ -198,7 +305,7 @@ def foodItem():
     ws = wb.get_sheet_by_name('Sheet1')
 
 
-    sugar = ''
+    sugar = 0
 
     print("11111")
     for i in range(1, ws.max_row):
@@ -226,63 +333,6 @@ def foodItem():
 
 
 
-def predictDiabetes():
-    print("lol i came here")
-    database = xlrd.open_workbook('/Users/Rushi/Downloads/Diabetes-Prediction-for-Women-master/diabetes_data.xlsx')
-
-    col_names = ['Pregnancies', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'Age',
-                 'Glucose']
-    print(col_names)
-    pima = pd.read_excel(database, names=col_names, engine='xlrd')
-    per = 0.55
-    plot = pd.DataFrame(col_names)
-    train = pima[:((int)(len(plot) * per))]
-    xtrain = train[
-        ['Pregnancies', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'Age']]
-    ytrain = train[['Glucose']]
-
-    test = pima[((int)(len(plot) * per)):]
-    xtest = test[['Pregnancies', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'Age']]
-    ytest = test[['Glucose']]
-    dataframeHeading = plot.head()
-
-    ols = sklearn.linear_model.LinearRegression()
-    model = ols.fit(xtrain, ytrain)
-
-    predict = model.predict(xtest)
-    print("==Value of model predict===")
-
-    length = len(predict) -1
-    print(predict[length])
-    print("This is the value?")
-    print("Ends Here")
-
-    return predict[length]
-
-
-
-
-#
-# @app.route('/calcNB', methods=['POST'])
-# def signIn():
-# import pandas
-# from sklearn import model_selection
-# from sklearn.linear_model import LogisticRegression
-# url = "https://archive.ics.uci.edu/ml/machine-learning-databases/pima-indians-diabetes/pima-indians-diabetes.data"
-# names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
-# dataframe = pandas.read_csv(url, names=names)
-# print dataframe
-# array = dataframe.values
-# print array
-# X = array[:, 0:8]
-# print X
-# Y = array[:, 8]
-# print Y
-# seed = 7
-# kfold = model_selection.KFold(n_splits=10, random_state=seed)
-# model = LogisticRegression()
-# results = model_selection.cross_val_score(model, X, Y, cv=kfold)
-# print(results.mean())
 
 
 if __name__ == '__main__':

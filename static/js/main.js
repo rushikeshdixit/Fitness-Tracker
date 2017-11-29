@@ -7,11 +7,12 @@ $(document).ready(function() {
         var obj1 = "";
         var obj2 = "";
         var obj3 = "";
+        var age="";
           $("#slider").slider({
               animate: true,
-              value:1,
-              min: 0,
-              max: 50,
+              value:10,
+              min: 10,
+              max: 70,
               step: 1,
               slide: function(event, ui) {
                   update(1,ui.value); //changed
@@ -23,9 +24,9 @@ $(document).ready(function() {
 
           $("#slider2").slider({
               animate: true,
-              value:0,
-              min: 0,
-              max: 200,
+              value:50,
+              min: 50,
+              max: 100,
               step: 1,
               slide: function(event, ui) {
                   update(2,ui.value); //changed
@@ -65,7 +66,7 @@ $(document).ready(function() {
         var waist = obj1;
         console.log("Waist is " + waist);
         var height = obj2;
-        var age = obj3;
+        age = obj3;
         // var dataToBeSent = $("form").serialize();
         // $.post("/mainPage", {waist:obj1},'json');
 
@@ -128,11 +129,26 @@ $(document).ready(function() {
 
 
         $("#exercises").click(function() {
-            if (ratio > 0.6)
-        window.location.href='http://127.0.0.1:5000/appleExercises';
-            else if (ratio >= 0.4 && ratio <= 0.5)
-                window.location.href = 'http://127.0.0.1:5000/pearExercises';
+            if (ratio > 0.6 && parseInt(age)<=50)
+            {
+
+                window.location.href='/appleExercises1';
+            }
+            else if(ratio > 0.6 && parseInt(age)>50)
+            {
+                window.location.href='/appleExercises2';
+            }
+            else if (ratio >= 0.4 && ratio <= 0.5 && parseInt(age)<=50)
+            {
+                window.location.href = '/pearExercises';
+            }
+             else if (ratio >= 0.4 && ratio <= 0.5 && parseInt(age)>50)
+            {
+                window.location.href = '/pearExercises2';
+            }
+
     });
+
 
 
       });
