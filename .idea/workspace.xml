@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a26fdafc-4c48-40c9-9f2d-33b438185621" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/Foods.xlsx" afterPath="$PROJECT_DIR$/static/Foods.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/diabetes_data.xlsx" afterPath="$PROJECT_DIR$/static/diabetes_data.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HCIProject.py" afterPath="$PROJECT_DIR$/HCIProject.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/3-col-portfolio.css" afterPath="$PROJECT_DIR$/static/css/3-col-portfolio.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/exercises.js" afterPath="$PROJECT_DIR$/static/js/exercises.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/main.js" afterPath="$PROJECT_DIR$/static/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/appleExercises.html" afterPath="$PROJECT_DIR$/templates/appleExercises.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/chillyExercises.html" afterPath="$PROJECT_DIR$/templates/chillyExercises.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/display_data.html" afterPath="$PROJECT_DIR$/templates/display_data.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/final.html" afterPath="$PROJECT_DIR$/templates/final.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main.html" afterPath="$PROJECT_DIR$/templates/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pearAppleExercises.html" afterPath="$PROJECT_DIR$/templates/pearAppleExercises.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pearExercises.html" afterPath="$PROJECT_DIR$/templates/pearExercises.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user_input.html" afterPath="$PROJECT_DIR$/templates/user_input.html" />
-    </list>
+    <list default="true" id="a26fdafc-4c48-40c9-9f2d-33b438185621" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
