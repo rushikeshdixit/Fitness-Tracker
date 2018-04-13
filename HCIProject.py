@@ -24,10 +24,10 @@ app = Flask(__name__)
 
 # MySQL configurations
 
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'mysql123$'
-app.config['MYSQL_DB'] = 'HCI'
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = '<enter_username>'
+app.config['MYSQL_PASSWORD'] = '<enter_password>'
+app.config['MYSQL_DB'] = '<enter_db>'
+app.config['MYSQL_HOST'] = '<enter_hostname>'
 mysql = MySQL(app)
 print "success"
 age=""
